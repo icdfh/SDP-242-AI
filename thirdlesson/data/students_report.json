@@ -1,0 +1,16 @@
+{
+ "count": 2,
+ "avg_grade": 88.5,
+ "students": [
+  {
+   "name": "Ali",
+   "age": 18,
+   "grade": 90
+  },
+  {
+   "name": "Diana",
+   "age": 19,
+   "grade": 87
+  }
+ ]
+}

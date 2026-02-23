@@ -1,0 +1,7 @@
+===REPORT===
+tea: 5
+snack: 2
+coffee: 3
+apple: 3
+
+TOP: tea: (5)
