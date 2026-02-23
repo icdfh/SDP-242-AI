@@ -170,33 +170,54 @@
 #     json.dump(data, f, ensure_ascii=False, indent=1)
 
 
-import json, csv
+# import json, csv
 
-students = []
-with open("thirdlesson/data/students.csv", "r", 
-          encoding="utf-8", newline="") as f:
-    reader = csv.DictReader(f)
-    for row in reader:
-        row["age"] = int(row["age"])
-        row["grade"] = int(row["grade"])
-        students.append(row)
+# students = []
+# with open("thirdlesson/data/students.csv", "r", 
+#           encoding="utf-8", newline="") as f:
+#     reader = csv.DictReader(f)
+#     for row in reader:
+#         row["age"] = int(row["age"])
+#         row["grade"] = int(row["grade"])
+#         students.append(row)
 
-count = len(students)
+# count = len(students)
 
-total = 0
-for s in students:
-    total += s["grade"]
+# total = 0
+# for s in students:
+#     total += s["grade"]
 
-avg_grade = total/count if count > 0 else 0
+# avg_grade = total/count if count > 0 else 0
 
-report = {
-    "count": count,
-    "avg_grade": avg_grade,
-    "students": students,
-}
-with open("thirdlesson/data/students_report.json", "w", encoding="utf-8") as f:
-    json.dump(report, f, ensure_ascii=False, indent=1)
+# report = {
+#     "count": count,
+#     "avg_grade": avg_grade,
+#     "students": students,
+# }
+# with open("thirdlesson/data/students_report.json", "w", encoding="utf-8") as f:
+#     json.dump(report, f, ensure_ascii=False, indent=1)
 
-print("Запушено")
+# print("Запушено")
+
+import json 
+
+stats = {}
+with open("thirdlesson/data/visits2.txt", "r", encoding="utf-8") as f:
+    for line in f:
+        line = line.strip()
+        if not line:
+            continue
+
+        parts = line.split(",")
+        name = parts[0].strip()
+
+        if name not in stats:
+            stats[name] = 0
+        stats[name] += 1
+
+with open("thirdlesson/data/visits_stat.json", "w", encoding="utf-8") as f:
+    json.dump(stats,f,ensure_ascii=False,indent=1)
+
+print(stats)
 
 
