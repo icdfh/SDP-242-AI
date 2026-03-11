@@ -126,17 +126,17 @@
 #     f.write(f"{site}: {count} ({percent})")
 #     f.write(f"\nTOP: {top_site}: ({top_count}) ({percent})")
 
-# import csv
-# students =  []
-# with open("thirdlesson/data/students.csv", "r", encoding ="utf-8") as f:
-#     reader = csv.DictReader(f)
-#     # for row in reader:
-#     #     students.append(row)
-#     for row in reader:
-#         row["age"] = int(row["age"])
-#         row["grade"] = int(row["grade"])
-#         students.append(row)
-# print(students)
+import csv
+students =  []
+with open("thirdlesson/data/students.csv", "r", encoding ="utf-8") as f:
+    reader = csv.DictReader(f)
+    # for row in reader:
+    #     students.append(row)
+    for row in reader:
+        row["age"] = int(row["age"])
+        row["grade"] = int(row["grade"])
+        students.append(row)
+print(students)
 
 
 
@@ -199,25 +199,25 @@
 
 # print("Запушено")
 
-import json 
+# import json 
 
-stats = {}
-with open("thirdlesson/data/visits2.txt", "r", encoding="utf-8") as f:
-    for line in f:
-        line = line.strip()
-        if not line:
-            continue
+# stats = {}
+# with open("thirdlesson/data/visits2.txt", "r", encoding="utf-8") as f:
+#     for line in f:
+#         line = line.strip()
+#         if not line:
+#             continue
 
-        parts = line.split(",")
-        name = parts[0].strip()
+#         parts = line.split(",")
+#         name = parts[0].strip()
 
-        if name not in stats:
-            stats[name] = 0
-        stats[name] += 1
+#         if name not in stats:
+#             stats[name] = 0
+#         stats[name] += 1
 
-with open("thirdlesson/data/visits_stat.json", "w", encoding="utf-8") as f:
-    json.dump(stats,f,ensure_ascii=False,indent=1)
+# with open("thirdlesson/data/visits_stat.json", "w", encoding="utf-8") as f:
+#     json.dump(stats,f,ensure_ascii=False,indent=1)
 
-print(stats)
+# print(stats)
 
 
