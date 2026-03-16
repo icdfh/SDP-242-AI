@@ -33,11 +33,11 @@ df = pd.DataFrame(data)
 # print((df['score']).mean())
 # print((df['score']).max())
 # print((df['score']).min())
-print(df.groupby('group') ["score"].mean())
+# print(df.groupby('group') ["score"].mean())
 
 
 
-print(df.head())
-print(df.info())
-print(df.shape)
-print(df.columns)
+# print(df.head())
+# print(df.info())
+# print(df.shape)
+# print(df.columns)
