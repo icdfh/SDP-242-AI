@@ -1,18 +1,36 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from contextlib import asynccontextmanager
 
-from backend.app.ai_service import analyze_text
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.database import create_db_and_tables
+from app.routes import router
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_db_and_tables()
+    yield
 
 
 app = FastAPI(
     title="AI Feedback Analyzer API",
     description="FastAPI backend with real AI model",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 
-class TextRequest(BaseModel):
-    text: str
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 
 @app.get("/")
@@ -22,14 +40,4 @@ def home():
     }
 
 
-@app.post("/analyze")
-def analyze(request: TextRequest):
-    try:
-        result = analyze_text(request.text)
-        return result
-
-    except Exception as error:
-        raise HTTPException(
-            status_code=500,
-            detail=f"AI model error: {str(error)}"
-        )
+app.include_router(router)

@@ -1,17 +1,21 @@
 from datetime import datetime
-from pydantic import BaseModel, Field
+from sqlmodel import SQLModel
 
-class FeedbackCreate(BaseModel):
-    text:str = Field(min_length=2, max_length=1000)
 
-class FeedbackRead(BaseModel):
-    id:int
-    text:str
-    ai_labe:str
-    confidence:float
+class FeedbackCreate(SQLModel):
+    text: str
+
+
+class FeedbackRead(SQLModel):
+    id: int
+    text: str
+    ai_label: str
+    confidence: float
     created_at: datetime
 
-class StatsRad(BaseModel):
+
+class StatsRead(SQLModel):
+    total: int
     positive: int
-    neutral: int
     negative: int
+    neutral: int
