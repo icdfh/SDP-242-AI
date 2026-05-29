@@ -1,0 +1,20 @@
+from sqlmodel import SQLModel, create_engine, Session
+
+DATABASE_URL = "sqlite:///feedback.db"
+
+connect_args = {
+    "chec_same_thread":False
+}
+
+engine = create_engine(
+    DATABASE_URL,
+    connect_args=connect_args
+)
+
+def create_db_and_tables():
+
+    SQLModel.metadata.create.all(engine)
+
+def get_session():
+    with Session(engine) as session:
+        yield session
