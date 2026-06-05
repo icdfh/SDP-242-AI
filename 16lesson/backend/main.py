@@ -11,7 +11,7 @@ from models import Feedback
 
 app = FastAPI()
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://sdp-242-ai-qwerty.vercel.app/")
 app.add_middleware(
     CORSMiddleware,
      allow_origins=[FRONTEND_URL],
