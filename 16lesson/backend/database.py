@@ -1,11 +1,23 @@
 from sqlmodel import SQLModel, create_engine, Session
+import os
+from dotenv import load_dotenv
 
-DATABASE_URL = "sqlite:///feedbacks.db"
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    DATABASE_URL = "sqlite:///database.db"
+
+connect_args = {}
+
+if DATABASE_URL.startswith("sqlite"):
+    connect_args = {"check_same_thread": False}
 
 engine = create_engine(
     DATABASE_URL,
     echo=True,
-    connect_args={"check_same_thread": False}
+    connect_args=connect_args
 )
 
 def create_db_and_tables():
